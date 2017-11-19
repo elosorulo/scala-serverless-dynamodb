@@ -1,15 +1,16 @@
 package inputform.backend.utils
 
-import java.io.StringWriter
-
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.scala.experimental.ScalaObjectMapper
+import spray.json._
+import ItemJsonProtocol._
+import inputform.backend.model.Item
 
 object JsonUtils {
 
-  val mapper = new ObjectMapper() with ScalaObjectMapper
+  def itemToJsonString(value: Item): String = {
+    value.toJson.toString
+  }
 
-  def toJson(value: Any): String = {
-    mapper.writeValue(new StringWriter, value).toString
+  def itemsListToJsonString(values: List[Item]): String = {
+    values.toJson.toString
   }
 }

@@ -11,7 +11,8 @@ trait ItemDao {
 
 class ItemDaoImpl extends ItemDao {
 
-  private final val ITEM: Item = Item("12345", "John", "Doe", "johndoe@mail.com", "abc", "", "", DateTime.now(), DateTime.now())
+  private final val ITEM: Item = Item("12345", "John", "Doe", "johndoe@mail.com", "abc", "", "", DateTime.now.toString,
+    DateTime.now.toString)
 
   def get(id: String): Item = {
     ITEM

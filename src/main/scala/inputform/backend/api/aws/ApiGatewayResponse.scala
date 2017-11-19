@@ -1,4 +1,4 @@
-package inputform.backend.api
+package inputform.backend.api.aws
 
 import scala.beans.BeanProperty
 

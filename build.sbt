@@ -10,12 +10,20 @@ releaseNextVersion := { ver => Version(ver).map(_.bumpMinor.string).getOrElse("E
 assemblyJarName in assembly := "inputform-backend.jar"
 
 libraryDependencies ++= Seq(
+//AWS Lambda
   "com.amazonaws" % "aws-lambda-java-events" % "1.3.0",
   "com.amazonaws" % "aws-lambda-java-core" % "1.1.0",
-  "com.fasterxml.jackson.core" % "jackson-annotations" % "2.9.1",
-  "com.fasterxml.jackson.module" % "jackson-module-scala_2.12" % "2.9.1",
+//Json Parsing
+  "io.spray" %  "spray-json_2.12" % "1.3.3",
+//Unit Testing
   "org.scalatest" % "scalatest_2.12" % "3.0.4" % "test",
-  "org.mockito" % "mockito-core" % "2.7.22"
+  "org.mockito" % "mockito-core" % "2.7.22",
+//Dependency Injection
+  "net.codingwell" % "scala-guice_2.12" % "4.1.0",
+//Logging
+  "org.apache.logging.log4j" % "log4j-api-scala_2.12" % "11.0",
+  "org.apache.logging.log4j" % "log4j-api" % "2.9.1",
+  "org.apache.logging.log4j" % "log4j-core" % "2.9.1"
 )
 
 scalacOptions ++= Seq(

@@ -1,4 +1,4 @@
-package inputform.backend.service.list
+package inputform.backend.handler.list
 
 import org.scalatest.{FunSuite, Matchers}
 
