@@ -2,6 +2,7 @@ package inputform.backend.handler.create
 
 import com.amazonaws.services.lambda.runtime.Context
 import inputform.backend.api.aws.ApiGatewayResponse
+import inputform.backend.handler.CreateItemHandler
 import inputform.backend.model.Item
 import org.joda.time.DateTime
 import org.scalatest.mockito.MockitoSugar

@@ -1,4 +1,4 @@
-package inputform.backend.handler.get
+package inputform.backend.handler
 
 import com.amazonaws.services.lambda.runtime.{Context, RequestHandler}
 import inputform.backend.api.aws.ApiGatewayResponse

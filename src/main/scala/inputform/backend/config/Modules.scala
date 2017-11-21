@@ -1,6 +1,7 @@
 package inputform.backend.config
 
-import inputform.backend.model.dao.{ItemDao, ItemDaoImpl}
+import inputform.backend.model.{ItemDao, ItemDaoImpl}
+import inputform.backend.model.dao.ItemDaoImpl
 import inputform.backend.service.{CreateItemService, GetItemService, ListItemsService, Service}
 import net.codingwell.scalaguice.ScalaModule
 

@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 import com.amazonaws.services.lambda.runtime.Context
 import inputform.backend.api.aws.ApiGatewayResponse
-import inputform.backend.model.dao.ItemDao
+import inputform.backend.model.ItemDao
 
 import scala.collection.JavaConverters
 

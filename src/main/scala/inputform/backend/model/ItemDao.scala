@@ -1,6 +1,5 @@
-package inputform.backend.model.dao
+package inputform.backend.model
 
-import inputform.backend.model.Item
 import org.joda.time.DateTime
 
 trait ItemDao {

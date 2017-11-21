@@ -14,7 +14,11 @@ object JsonUtils {
     values.toJson.toString
   }
 
-  def jsonStringToItem(value: String): Item = value.parseJson.convertTo[Item]
+  def jsonStringToItem(value: String): Item = {
+    value.parseJson.convertTo[Item]
+  }
 
-  def jsonStringToItemsList(value: String): List[Item] = value.parseJson.convertTo[List[Item]]
+  def jsonStringToItemsList(value: String): List[Item] = {
+    value.parseJson.convertTo[List[Item]]
+  }
 }

@@ -21,21 +21,21 @@ package:
 
 functions:
   create:
-    handler: inputform.backend.service.create.CreateItemService
+    handler: inputform.backend.handler.CreateItemHandler
     events:
       - http:
           path: form
           method: post
           cors: true
   get:
-    handler: inputform.backend.service.get.GetItemService
+    handler: inputform.backend.handler.GetItemHandler
     events:
       - http:
           path: form/{id}
           method: get
           cors: true
   list:
-    handler: inputform.backend.service.list.ListItemService
+    handler: inputform.backend.handler.ListItemHandler
     events:
       - http:
           path: form
