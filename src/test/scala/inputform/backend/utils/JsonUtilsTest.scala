@@ -27,6 +27,5 @@ class JsonUtilsTest extends FunSuite with Matchers with Logging {
     val stringToItems: List[Item] = JsonUtils.jsonStringToItemsList(itemsJsonString)
 
     List(ITEM_A, ITEM_B) shouldEqual stringToItems
-
   }
 }
