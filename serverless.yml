@@ -35,7 +35,7 @@ functions:
           method: get
           cors: true
   list:
-    handler: inputform.backend.handler.ListItemHandler
+    handler: inputform.backend.handler.ListItemsHandler
     events:
       - http:
           path: form
