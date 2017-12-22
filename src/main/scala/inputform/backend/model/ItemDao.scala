@@ -1,5 +1,11 @@
 package inputform.backend.model
 
+import javax.inject.Inject
+
+import com.amazonaws.services.dynamodbv2.{AmazonDynamoDB, AmazonDynamoDBClientBuilder}
+import com.gu.scanamo.syntax._
+import com.gu.scanamo.{Scanamo, Table}
+import inputform.backend.utils.{DynamoBuilder, Logger}
 import org.joda.time.DateTime
 
 trait ItemDao {
@@ -8,19 +14,29 @@ trait ItemDao {
   def put(item: Item)
 }
 
-class ItemDaoImpl extends ItemDao {
+class ItemDaoImpl @Inject() (dynamoBuilder: DynamoBuilder) extends ItemDao {
 
-  private final val ITEM: Item = Item("12345", "John", "Doe", "johndoe@mail.com", "abc",
-    "Some Options", "Yes.", DateTime.now.toString, DateTime.now.toString)
+  private final val ENV_TABLE_NAME = "DYNAMODB_TABLE"
 
   def get(id: String): Item = {
-    ITEM
+    Logger.info(s"Initializing table.")
+    val table: Table[Item] = Table[Item](scala.util.Properties.envOrNone(ENV_TABLE_NAME).get)
+    Logger.info(s"Executing dynamoDB scan Operation")
+    Scanamo.exec(dynamoBuilder.build())(table.get('id -> id)).get.toOption.get
   }
 
   def getAll(): List[Item] = {
-    List(ITEM)
+    Logger.info(s"Initializing table.")
+    val table: Table[Item] = Table[Item](scala.util.Properties.envOrNone(ENV_TABLE_NAME).get)
+    Logger.info(s"Executing dynamoDB scan Operation")
+    Scanamo.exec(dynamoBuilder.build())(table.scan()).map(i => i.toOption.get)
   }
 
   def put(item: Item): Unit = {
+    Logger.info(s"Initializing table.")
+    val table: Table[Item] = Table[Item](scala.util.Properties.envOrNone(ENV_TABLE_NAME).get)
+    val timestamp = DateTime.now().getMillis.toString
+    Logger.info(s"Executing dynamoDB scan Operation")
+    Scanamo.exec(dynamoBuilder.build())(table.put(item.copy(createdAt = timestamp, updatedAt = timestamp)))
   }
 }

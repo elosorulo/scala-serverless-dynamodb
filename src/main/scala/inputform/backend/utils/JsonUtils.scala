@@ -1,8 +1,8 @@
 package inputform.backend.utils
 
 import spray.json._
-import ItemJsonProtocol._
-import inputform.backend.model.Item
+import CustomJsonProtocol._
+import inputform.backend.model.{ErrorResponse, Input, Item}
 
 object JsonUtils {
 
@@ -20,5 +20,13 @@ object JsonUtils {
 
   def jsonStringToItemsList(value: String): List[Item] = {
     value.parseJson.convertTo[List[Item]]
+  }
+
+  def errorResponseToJsonString(errorResponse: ErrorResponse): String ={
+    errorResponse.toJson.toString
+  }
+
+  def getIdFromInput(pathParameters: Object): String  = {
+    JsonParser.apply(pathParameters.toString).convertTo[Input].id
   }
 }

@@ -1,17 +1,16 @@
 package inputform.backend.utils
 
 import inputform.backend.model.Item
-import org.apache.logging.log4j.scala.Logging
 import org.joda.time.DateTime
 import org.scalatest.{FunSuite, Matchers}
 
-class JsonUtilsTest extends FunSuite with Matchers with Logging {
+class JsonUtilsTest extends FunSuite with Matchers {
 
   private final val ITEM_A: Item = Item("12345", "John", "Doe", "johndoe@mail.com", "abc",
-    "Some Options", "Yes.", DateTime.now.toString, DateTime.now.toString)
+    "Some Options", true, DateTime.now.toString, DateTime.now.toString)
 
   private final val ITEM_B: Item = Item("12346", "Jane", "Doe", "janedoe@mail.com", "def",
-    "Some Options", "No.", DateTime.now.toString, DateTime.now.toString)
+    "Some Options", false, DateTime.now.toString, DateTime.now.toString)
 
   test("Single Item Marshalling and Unmarshalling Test.") {
     val itemAJsonString: String = JsonUtils.itemToJsonString(ITEM_A)

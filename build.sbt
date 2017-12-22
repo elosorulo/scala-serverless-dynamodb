@@ -20,10 +20,8 @@ libraryDependencies ++= Seq(
   "org.mockito" % "mockito-core" % "2.7.22",
 //Dependency Injection
   "net.codingwell" % "scala-guice_2.12" % "4.1.0",
-//Logging
-  "org.apache.logging.log4j" % "log4j-api-scala_2.12" % "11.0",
-  "org.apache.logging.log4j" % "log4j-api" % "2.9.1",
-  "org.apache.logging.log4j" % "log4j-core" % "2.9.1"
+  //Dynamodb
+  "com.gu" % "scanamo_2.12" % "1.0.0-M3"
 )
 
 scalacOptions ++= Seq(
