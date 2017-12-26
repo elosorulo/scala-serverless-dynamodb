@@ -14,5 +14,3 @@ case class ErrorResponse(errorCode: Int, message: String, errorType: String)
 
 case class InputFormException(errorCode: Int, message: String = "",
                               cause: Throwable = None.orNull) extends Exception(message, cause)
-
-case class Input(id: String)

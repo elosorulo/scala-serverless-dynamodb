@@ -4,6 +4,7 @@ import com.amazonaws.services.lambda.runtime.{Context, LambdaLogger}
 import inputform.backend.api.aws.ApiGatewayResponse
 import inputform.backend.handler.CreateItemHandler
 import inputform.backend.model.Item
+import inputform.backend.utils.JsonUtils
 import org.joda.time.DateTime
 import org.mockito.Mockito
 import org.scalatest.mockito.MockitoSugar
@@ -17,9 +18,10 @@ class CreateItemServiceTest extends FunSuite with Matchers with MockitoSugar {
 
   test("StatusCode: 200 - OK") {
     val create: CreateItemHandler = new CreateItemHandler
-    val response: ApiGatewayResponse = create.handleRequest(JavaConverters.mapAsJavaMap(Map.empty), mockContext())
+    val input: Map[String, Object] = Map("body" -> JsonUtils.itemToJsonString(ITEM))
+    val response: ApiGatewayResponse = create.handleRequest(JavaConverters.mapAsJavaMap(input), mockContext())
 
-    response.body shouldBe ""
+    //response.body shouldBe ""
     //response.statusCode shouldBe 200
     response.headers shouldBe JavaConverters.mapAsJavaMap(Map.empty)
   }
