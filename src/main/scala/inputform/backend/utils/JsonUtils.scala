@@ -1,8 +1,8 @@
 package inputform.backend.utils
 
+import inputform.backend.model.{ErrorResponse, Item}
+import inputform.backend.utils.CustomJsonProtocol._
 import spray.json._
-import CustomJsonProtocol._
-import inputform.backend.model.{ErrorResponse, Input, Item}
 
 object JsonUtils {
 
@@ -24,9 +24,5 @@ object JsonUtils {
 
   def errorResponseToJsonString(errorResponse: ErrorResponse): String ={
     errorResponse.toJson.toString
-  }
-
-  def getIdFromInput(pathParameters: Object): String  = {
-    JsonParser.apply(pathParameters.toString).convertTo[Input].id
   }
 }

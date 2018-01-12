@@ -13,7 +13,6 @@ import org.scalatest.{FunSuite, Matchers}
 import scala.collection.JavaConverters
 
 class CreateItemServiceTest extends FunSuite with Matchers with MockitoSugar {
-
   private final val ITEM: Item = Item("12345", "John", "Doe", "johndoe@mail.com", "abc", "", false, DateTime.now.toString,
     DateTime.now.toString)
 

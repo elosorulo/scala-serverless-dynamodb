@@ -4,7 +4,7 @@ import javax.inject.Inject
 
 import com.amazonaws.services.lambda.runtime.Context
 import inputform.backend.api.aws.ApiGatewayResponse
-import inputform.backend.model.ItemDao
+import inputform.backend.model.{InputFormException, ItemDao}
 import inputform.backend.utils.{JsonUtils, Logger}
 
 import scala.collection.JavaConverters
@@ -19,13 +19,9 @@ class CreateItemService @Inject() (itemDao: ItemDao) extends Service {
         Logger.info(s"Returning API Gateway Response.")
         ApiGatewayResponse(statusCode = 200, body = "",
           headers = JavaConverters.mapAsJavaMap[String, Object](Map.empty), false)
-
       case None =>
-        Logger.error(s"No input found.")
-        ApiGatewayResponse(statusCode = 400, body = "",
-        headers = JavaConverters.mapAsJavaMap[String, Object](Map.empty), false)
-    }
-
+        Logger.error(s"No input found.")}
+        throw InputFormException(1002, "Invalid Path Parameters")
   }
 
   def getBody(request: java.util.Map[String, Object]): Option[Object] = {

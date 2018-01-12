@@ -2,7 +2,7 @@ package inputform.backend.service
 
 import inputform.backend.api.aws.ApiGatewayResponse
 import inputform.backend.model.{ErrorResponse, ErrorTypes, InputFormException}
-import inputform.backend.utils.JsonUtils
+import inputform.backend.utils.{JsonUtils, Logger}
 
 import scala.collection.JavaConverters
 
@@ -12,7 +12,9 @@ object ExecutionStatusResolver extends ErrorTypes {
       body
     } catch {
       case e: InputFormException => checkStatus(e)
-      case _: Exception => ApiGatewayResponse(
+      case e: Exception =>
+        Logger.error(e.getMessage)
+        ApiGatewayResponse(
         statusCode = 503,
         body = JsonUtils.errorResponseToJsonString(errorResponse = ErrorResponse(
             errorCode = 1000,
