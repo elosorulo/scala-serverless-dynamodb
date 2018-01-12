@@ -17,7 +17,7 @@ class CreateItemService @Inject() (itemDao: ItemDao) extends Service {
         Logger.info(s"Putting item in DAO.")
         itemDao.put(JsonUtils.jsonStringToItem(body.toString))
         Logger.info(s"Returning API Gateway Response.")
-        ApiGatewayResponse(statusCode = 200, body = "",
+        return ApiGatewayResponse(statusCode = 200, body = "",
           headers = JavaConverters.mapAsJavaMap[String, Object](Map.empty), false)
       case None =>
         Logger.error(s"No input found.")}
