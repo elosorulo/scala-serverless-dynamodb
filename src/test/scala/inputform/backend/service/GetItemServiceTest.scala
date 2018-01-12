@@ -1,5 +1,7 @@
 package inputform.backend.handler
 
+import java.util
+
 import com.amazonaws.services.lambda.runtime.{Context, LambdaLogger}
 import inputform.backend.api.aws.ApiGatewayResponse
 import inputform.backend.model.{Item, ItemDao}
@@ -10,7 +12,7 @@ import org.mockito.Mockito
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSuite, Matchers}
 
-import scala.collection.JavaConverters
+import scala.collection.{JavaConverters, mutable}
 
 class GetItemServiceTest extends FunSuite with Matchers with MockitoSugar {
 
@@ -43,7 +45,9 @@ class GetItemServiceTest extends FunSuite with Matchers with MockitoSugar {
   }
 
   private def mockInput(): java.util.Map[String, Object] = {
-    JavaConverters.mapAsJavaMap(Map("id" -> "12345"))
+    val pathParameters: util.LinkedHashMap[String, Object] = new util.LinkedHashMap[String, Object]()
+    pathParameters.put("id", "12345")
+    JavaConverters.mapAsJavaMap(Map("pathParameters" -> pathParameters))
   }
 
 }
